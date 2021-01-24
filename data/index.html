@@ -1,0 +1,344 @@
+<!-- The MIT License (MIT)
+
+Copyright (c) 2011-2018 Twitter, Inc.
+Copyright (c) 2011-2018 The Bootstrap Authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE. -->
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>DynaLight</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" href="data:," />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="style.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>DynaLight</h1>
+      <h3>Web server</h3>
+      <h4>Sterownik diod LED</h4>
+    </header>
+    <section class="container-sm" style="margin-bottom: 10vh;">
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h3 class="float-left m-2">
+              DynaLight
+            </h3>
+            <div class="float-right" style="display: inline-block;">
+              <button
+                class="btn btn-width btn-danger m-2"
+                id="bnt0"
+                onClick="writeControllerStatusWS(0)"
+              >
+                OFF
+              </button>
+              <!-- style="visibility: hidden;" -->
+                FPS:
+                <span 
+                  class="spanFPS" 
+                  id="FPS"
+                >
+                &otimes;
+                </span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h3 class="float-left m-2">
+              Stałe podświetlenie
+            </h3>
+
+            <div class="float-right" style="display: inline-block;">
+              <button
+                class="btn btn-width btn-danger m-2"
+                id="bnt1"
+                onClick="writeControllerStatusWS(1)"
+              >
+                OFF
+              </button>
+              <button
+                class="btn btn-secondary m-2 collapseBtn"
+                data-toggle="collapse"
+                data-target="#collapseTwo"
+                aria-expanded="true"
+                aria-controls="collapseTwo"
+              >
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
+            <div class="card-body">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    DynaLight daje możliwość wyświetlania ledów w trybie pojedynczego koloru niezależnie 
+                    od aplikacji okienkowej. Wybierz kolor spośród domyślnych podświetleń lub klikając na 
+                    kolorowy okrąg, otwórz paletę kolorów i dostosuj kolor podświetlenia do swoich preferencji. 
+                    Aplikacja automatycznie zmienia tryby pracy ledów, po wciścieciu przycisku OFF, 
+                    tryb zostanie uruchomiony, a inne dezaktywowane.
+                  <div class="col-md-3 text-center">
+                    <label for="input-color">Wybierz kolor:</label>
+                    <div class="input-color-container">
+                      <input
+                        id="input-color"
+                        class="input-color"
+                        type="color"
+                        value="{color}"
+                        onChange="writeColorValueWS(this.value)"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <button
+                      class="btn btn-color m-2"
+                      id="color1"
+                      style="background-color: #fcffe5;"
+                      onClick='writeColorValueWS("#FCFFE5")'
+                    ></button>
+                    <button
+                      class="btn btn-color m-2"
+                      id="color2"
+                      style="background-color: #fff0c8;"
+                      onClick='writeColorValueWS("#FFF0c8")'
+                    ></button>
+                    <button
+                      class="btn btn-color m-2"
+                      id="color3"
+                      style="background-color: #dbf8ff;"
+                      onClick='writeColorValueWS("#DBF8FF")'
+                    ></button>
+                    <button
+                      class="btn btn-color m-2"
+                      id="color4"
+                      style="background-color: #ff0000;"
+                      onClick='writeColorValueWS("#FF0000")'
+                    ></button>
+                    <button
+                      class="btn btn-color m-2"
+                      id="color5"
+                      style="background-color: #00ff00;"
+                      onClick='writeColorValueWS("#00FF00")'
+                    ></button>
+                    <button
+                      class="btn btn-color m-2"
+                      id="color6"
+                      style="background-color: #0000ff;"
+                      onClick='writeColorValueWS("#0000FF")'
+                    ></button>
+                    <button
+                      class="btn btn-color m-2"
+                      id="color7"
+                      style="background-color: #009e5a;"
+                      onClick='writeColorValueWS("#009E5A")'
+                    ></button>
+                    <button
+                      class="btn btn-color m-2"
+                      id="color8"
+                      style="background-color: #58befe;"
+                      onClick='writeColorValueWS("#58BEFE")'
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingMonitor">
+            <h3 class="float-left m-2">
+              Monitor
+            </h3>
+
+            <div class="float-right" style="display: inline-block;">
+              <button
+                class="btn btn-danger m-2"
+                id="bnt4"
+                onClick="writeControllerStatusWS(-1)"
+              >
+                Wyłącz wszystkie tryby
+              </button>
+              <button
+                class="btn btn-secondary m-2 collapseBtn"
+                data-toggle="collapse"
+                data-target="#collapseMonitor"
+                aria-expanded="true"
+                aria-controls="collapseMonitor"
+              >
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div
+            id="collapseMonitor"
+            class="collapse"
+            aria-labelledby="headingMonitor"
+          >
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <p>RSSI: <span id="rssi">NaN</span>dB</p>
+                  <p>Ping: <span id="ping">NaN</span>ms</p>
+                </div>
+                <div class="col-md-10">
+                  <div class="form-group">
+                    <label for="consoleMonitor">Konsola:</label>
+                    <textarea
+                      id="consoleMonitor"
+                      class="form-control console"
+                      rows="10"
+                      readonly
+                    >
+Uruchomiono konsole...</textarea
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <h4>Copyright © 2020</h4>
+      <h4>Damian Szefler i Paweł Skiba</h4>
+    </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let textarea = document.getElementById("consoleMonitor");
+      //-------------------WebSocket-------------------
+
+      let gateway = `ws://${window.location.hostname}/ws`;
+      let websocket;
+      function initWebSocket() {
+        console.log("Trying to open a WebSocket connection...");
+        websocket = new WebSocket(gateway);
+        websocket.onopen = onOpen;
+        websocket.onclose = onClose;
+        websocket.onmessage = onMessage;
+      }
+      function onOpen(event) {
+        console.log("Connection opened");
+      }
+
+      function onClose(event) {
+        console.log("Connection closed");
+        setTimeout(initWebSocket, 2000);
+      }
+      function onMessage(event) {
+        if (event.data[0] === "S")
+          writeControllerStatus(event.data.substring(1));
+        if (event.data[0] === "C") writeColorValue(event.data.substring(1));
+        if (event.data[0] === "P") writePing(event.data.substring(1));
+        if (event.data[0] === "R") writeRSSI(event.data.substring(1));
+        if (event.data[0] === "M") writeConsole(event.data.substring(1));
+        if (event.data[0] === "F") writeFPS(event.data.substring(1));
+      }
+      window.addEventListener("load", onLoad);
+      function onLoad(event) {
+        initWebSocket();
+      }
+
+      function writeControllerStatusWS(num) {
+        websocket.send(String("S") + num);
+      }
+      function writeColorValueWS(color) {
+        let tempColor = color.substring(1);
+        websocket.send(String("C") + tempColor);
+      }
+      //-----------------------------------------
+      function writeControllerStatus(num) {
+        let i;
+        for (i = 0; i < 2; i++) {
+          document.getElementById("bnt" + i).innerHTML = "OFF";
+          document.getElementById("bnt" + i).classList.add("btn-danger");
+          document.getElementById("bnt" + i).classList.remove("btn-success");
+        }
+        if (num >= 0) {
+          document.getElementById("bnt" + num).innerHTML = "ON";
+          document.getElementById("bnt" + num).classList.remove("btn-danger");
+          document.getElementById("bnt" + num).classList.add("btn-success");
+        }
+      }
+      function writeColorValue(val) {
+        let tempVal = val;
+        for (let i = 6; i > val.length; i--) {
+          tempVal = "0" + tempVal;
+        }
+        val = "0" + val;
+        document.getElementById("input-color").value = "#" + tempVal;
+      }
+      function writePing(val) {
+        document.getElementById("ping").innerHTML = val;
+      }
+      function writeRSSI(val) {
+        document.getElementById("rssi").innerHTML = val;
+      }
+      function writeConsole(val) {
+        document.getElementById("consoleMonitor").innerHTML += val;
+        textarea.scrollTop = textarea.scrollHeight;
+      }
+      function writeFPS(val) {
+        document.getElementById("FPS").innerHTML = val;
+      }
+      //-----------------Dynamizacja-elementów-strony-----------
+
+      let elementsArray = document.querySelectorAll(".collapseBtn");
+      elementsArray.forEach(function (elem) {
+        elem.addEventListener("click", function () {
+          $(this).toggleClass("rotate-180");
+        });
+      });
+
+      //---------------------------------------------
+    </script>
+  </body>
+</html>

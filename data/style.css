@@ -1,0 +1,117 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  header,
+  footer {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #22c1c369 30%, #fdbb2d6b 100%),
+      url("https://i.imgur.com/FcTaTSX.jpeg") center no-repeat;
+    background-size: cover;
+    color: #fff;
+    text-shadow: 2px 3px 5px #000000;
+  }
+
+  header {
+    position: fixed;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+
+  header > h3,
+  h4 {
+    font-family: "Lato", sans-serif;
+  }
+
+  header > h4 {
+    font-size: 1.2rem;
+  }
+
+  .container-sm {
+    margin-top: 270px;
+    min-height: calc(90vh - 270px - 51px);
+  }
+
+  .input-color-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: solid 2px #ddd;
+    border-radius: 50%;
+  }
+
+  .input-color {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    right: -10%;
+    top: -10%;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-color {
+    border: solid 2px #030303;
+    width: 40px;
+    height: 40px;
+  }
+
+  .btn-width {
+    width: 7ch !important;
+  }
+
+  .spanFPS {
+    display: inline-block;
+    width: 3ch;
+  }
+
+  .collapseBtn {
+    transition: 0.4s ease-in-out;
+  }
+  .rotate-180 {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  .console[readonly] {
+    background-color: #270027;
+    color: white;
+    font-family: Consolas, monaco, monospace;
+  }
+
+  footer {
+    justify-content: space-between;
+    padding: 10px 20px 5px;
+  }
+
+  @media (max-width: 900px) {
+    header {
+      height: 100px;
+    }
+    header > h1 {
+      font-size: 1.8rem;
+    }
+    header > h3 {
+      font-size: 1.4rem;
+    }
+    .container-sm {
+      margin-top: 150px;
+      min-height: calc(90vh - 150px - 87px);
+    }
+    footer {
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px 20px 5px;
+    }
+  }
